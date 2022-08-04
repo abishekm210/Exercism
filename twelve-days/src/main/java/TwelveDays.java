@@ -1,38 +1,31 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class TwelveDays {
 
-    public static String[] twelveDaysLyrics = {
-        "On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.\n",
-        "On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the third day of Christmas my true love gave to me: three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the fourth day of Christmas my true love gave to me: four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the fifth day of Christmas my true love gave to me: five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the sixth day of Christmas my true love gave to me: six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the eighth day of Christmas my true love gave to me: eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the ninth day of Christmas my true love gave to me: nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n",
-        "On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n"
-    };
-
     String verse(int verseNumber) {
-        return twelveDaysLyrics[verseNumber-1];
+        String day[] = {"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"};
+        String sentence[] = {" a Partridge in a Pear Tree.\n", " two Turtle Doves, and", " three French Hens", " four Calling Birds",
+                " five Gold Rings", " six Geese-a-Laying", " seven Swans-a-Swimming", " eight Maids-a-Milking",
+                " nine Ladies Dancing", " ten Lords-a-Leaping", " eleven Pipers Piping", " twelve Drummers Drumming"};
+        String lyric = "On the " + day[verseNumber - 1] + " day of Christmas my true love gave to me:";
+
+        for(int iteration = verseNumber-1 ; iteration >= 0 ; iteration--) {
+            lyric += sentence[iteration];
+            if (iteration > 1)
+                lyric += ',';
+        }
+        return lyric;
     }
 
     String verses(int startVerse, int endVerse) {
-        StringBuilder lyrics = new StringBuilder();
-        for(int i = startVerse ; i <= endVerse ; i++)
+        String lyrics = "";
+        for(int iteration = startVerse ; iteration <= endVerse ; iteration++)
         {
-            lyrics.append(verse(i));
-            if(i < endVerse)
-                lyrics.append("\n");
+            lyrics += verse(iteration);
+            if(iteration < endVerse)
+                lyrics += "\n";
         }
-        return lyrics.toString();
+        return lyrics;
     }
-    
+
     String sing() {
         return verses(1,12);
     }
